@@ -11,15 +11,15 @@ const char DELIMITER_CODE = ',';
 const char ARGUMENT_CODE = '=';
 
 
-string get_flag_code(FLAGS flag) {
-	if (flag == FLAGS::BOLD) return "bold";
-	if (flag == FLAGS::UNDERLINE) return "underline";
-	if (flag == FLAGS::ITALIC) return "italic";
-	if (flag == FLAGS::COLOR) return "color";
+string get_flag_code(Flags flag) {
+	if (flag == Flags::BOLD) return "bold";
+	if (flag == Flags::UNDERLINE) return "underline";
+	if (flag == Flags::ITALIC) return "italic";
+	if (flag == Flags::COLOR) return "color";
 	return "none";
 }
 
-void check_for_flag(string* raw_flag_string, unsigned long* position_delimiter, unsigned char* flag_bitmask, color* color_pointer) {
+void check_for_flag(string* raw_flag_string, unsigned long* position_delimiter, unsigned char* flag_bitmask, Color* color_pointer) {
 	unsigned long length_raw = raw_flag_string->length();
 	// npos: no position
 	if (*position_delimiter == string::npos) *position_delimiter = length_raw;
@@ -31,7 +31,7 @@ void check_for_flag(string* raw_flag_string, unsigned long* position_delimiter, 
 	if (position_argument != string::npos && position_argument < length_code) {
 		argument = flag_code.substr(position_argument + 1, length_code);
 		flag_code.erase(position_argument, length_code);
-		color new_color = get_color(argument);
+		Color new_color = get_color(argument);
 		color_pointer->r = new_color.r;
 		color_pointer->g = new_color.g;
 		color_pointer->b = new_color.b;
@@ -49,7 +49,7 @@ void check_for_flag(string* raw_flag_string, unsigned long* position_delimiter, 
 }
 
 // Turns a string formatted like "[...]" where "..." is a valid modifier string, the pointer updates it's values if color is selected
-unsigned char get_flags(string raw_flag_string, color* color_pointer) {
+unsigned char get_flags(string raw_flag_string, Color* color_pointer) {
 	if (raw_flag_string.length() <= 2) return 0;
 	raw_flag_string.erase(0,1);
 	raw_flag_string.erase(raw_flag_string.length() - 1);
@@ -65,8 +65,8 @@ unsigned char get_flags(string raw_flag_string, color* color_pointer) {
 }
 
 // Turns a string formatted like "FFFFFF" where F is a valid hex char into a `color` struct
-color color_from_string(string hex) {
-	color new_color;
+Color color_from_string(string hex) {
+	Color new_color;
 	unsigned int temporal_value;
 	// Grabs 2 hex characters, parses it to unsigned char, and store it on he struct's `r`, `g`, and `b` respectively
 	stringstream(hex.substr(0, 2)) >> std::hex >> temporal_value;
@@ -81,7 +81,7 @@ color color_from_string(string hex) {
 }
 
 // Returns a ansi code based on the `color` struct given
-string ansi_code_from_color(color *color) {
+string ansi_code_from_color(Color *color) {
 	string ansi_code = "\x1B[38;2;";
 	ansi_code += to_string(color->r) + ";";
 	ansi_code += to_string(color->g) + ";";

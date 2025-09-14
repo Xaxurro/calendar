@@ -8,13 +8,13 @@
 
 using namespace std::filesystem;
 
-enum OPTIONS {
+enum Options {
 	HELP,
 	TIME_FUTURE,
 	TIME_PAST
 };
 
-enum COMMANDS {
+enum Commands {
 	EVENTS,
 	CALENDAR
 };
@@ -22,6 +22,6 @@ enum COMMANDS {
 path get_path();
 void create_path();
 void set_color(std::string id, std::string value);
-color get_color(std::string id);
+Color get_color(std::string id);
 
 #endif // !H_CALENDAR_OPTIONS

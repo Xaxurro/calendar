@@ -25,7 +25,7 @@ void set_color(string id, string value) {
 	colors[id] = value;
 }
 
-color get_color(string id) {
+Color get_color(string id) {
 	return color_from_string(colors[id]);
 }
 
