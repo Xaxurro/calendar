@@ -5,11 +5,11 @@
 #include <iostream>
 
 enum FLAGS {
-	NONE = 0,
-	BOLD = 1,
-	UNDERLINE = 2,
-	ITALIC = 4,
-	COLOR = 8
+	NONE,
+	BOLD,
+	UNDERLINE,
+	ITALIC,
+	COLOR
 };
 
 static const FLAGS flags[] = {BOLD, UNDERLINE, ITALIC, COLOR};

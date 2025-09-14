@@ -33,8 +33,5 @@ int main () {
 	set_color("red",	"FF0000");
 	set_color("green",	"00FF00");
 	set_color("blue",	"0000FF");
-	color new_color;
-	unsigned char flags_bitmask = get_flags(flags_str, &new_color);
-	ansi_code_from_flag(flags_bitmask);
 	return 0;
 }
