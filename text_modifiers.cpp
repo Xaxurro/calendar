@@ -81,7 +81,7 @@ Color color_from_string(string hex) {
 }
 
 // Returns a ansi code based on the `color` struct given
-string ansi_code_from_color(Color *color) {
+string ansi_code_from_color(Color* color) {
 	string ansi_code = "\x1B[38;2;";
 	ansi_code += to_string(color->r) + ";";
 	ansi_code += to_string(color->g) + ";";

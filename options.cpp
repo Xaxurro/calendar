@@ -28,10 +28,3 @@ void set_color(string id, string value) {
 Color get_color(string id) {
 	return color_from_string(colors[id]);
 }
-
-int main () {
-	set_color("red",	"FF0000");
-	set_color("green",	"00FF00");
-	set_color("blue",	"0000FF");
-	return 0;
-}
